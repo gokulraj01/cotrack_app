@@ -1,2 +1,5 @@
-# cotrack-app
-QR Based Contact Tracing Solution
+# cotrack_app
+
+A QR Based Contact Tracing Solution
+
+## Usage and Application

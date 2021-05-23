@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cotrack_app">
    <application
-        android:label="cotrack_app"
-        android:icon="@mipmap/ic_launcher">
+        android:label="CoTrack"
+        android:icon="@mipmap/cotrack_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
