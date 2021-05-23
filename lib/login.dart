@@ -34,7 +34,7 @@ class Login extends StatelessWidget{
 class LoginController extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    // double sw = MediaQuery.of(context).size.width;
+    double sw = MediaQuery.of(context).size.width;
     double sh = MediaQuery.of(context).size.height;
     double logosize = 512;
     if(sh*0.5 < 512){
@@ -42,11 +42,11 @@ class LoginController extends StatelessWidget{
     }
     return Scaffold(
       backgroundColor: colPrim,
-      body: Center(child: Padding(padding: EdgeInsets.symmetric(horizontal: 100),
-      child: Column(
+      body: Center(child: Padding(padding: EdgeInsets.symmetric(horizontal: 0.125*sw),
+      child: ListView(
         children: [
           Image.asset('images/logo.png', height: logosize, width: logosize),
-          Text("Login to your CoTrack Account"),
+          Center(child:Text("Login to your CoTrack Account")),
           SizedBox(height: 20),
           TextField(
             style: TextStyle(color: Colors.white),
@@ -60,7 +60,7 @@ class LoginController extends StatelessWidget{
             obscureText: true,
             decoration: InputDecoration(
               labelText: "Password",
-              hintText: "Enter your username",
+              hintText: "Enter your password",
           )),
           SizedBox(height: 10),
           ElevatedButton(onPressed: (){}, child: Text("Sign-In")),
