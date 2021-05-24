@@ -22,7 +22,7 @@ class Login extends StatelessWidget{
         elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(minimumSize: Size(double.infinity,50))),
         inputDecorationTheme: InputDecorationTheme(
           labelStyle: TextStyle(color: Color(0xffffffff), fontSize: 16),
-          focusedBorder: OutlineInputBorder(),
+          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 2.0)),
           border: OutlineInputBorder(),
           filled: true,
           fillColor: Color(0x22ffbd59)
@@ -50,14 +50,12 @@ class LoginController extends StatelessWidget{
           Center(child:Text("Login to your CoTrack Account")),
           SizedBox(height: 20),
           TextField(
-            style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
             labelText: "Username",
             hintText: "Enter your username"
           )),
           SizedBox(height: 10),
           TextField(
-            style: TextStyle(color: Colors.white),
             obscureText: true,
             decoration: InputDecoration(
               labelText: "Password",

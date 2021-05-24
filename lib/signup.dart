@@ -27,7 +27,7 @@ class SignUp extends StatelessWidget{
         elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(minimumSize: Size(double.infinity,50))),
         inputDecorationTheme: InputDecorationTheme(
           // labelStyle: TextStyle(color: Color(0xffffffff)),
-          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: colAcc, width: 3.0),),
+          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: colAcc, width: 3.0)),
           border: OutlineInputBorder(),
           // filled: true,
           // fillColor: Color(0x22ffbd59)
