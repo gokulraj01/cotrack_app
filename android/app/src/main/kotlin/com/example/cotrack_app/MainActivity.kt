@@ -1,4 +1,4 @@
-package com.example.cotrack_app
+package com.gad.cotrack_app
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,14 +1,13 @@
+import 'package:cotrack_app/firebase/authenticate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 var colPrim = Color(0xffff5757);
 var colAcc = Color(0xffffbd59);
 var colHint = Color(0xaaffffff);
 
-enum AccType {merchant, individual}
+FireAuth auth = FireAuth();
 
-void main(){
-  runApp(SignUp());
-}
+enum AccType {merchant, individual}
 
 class SignUp extends StatelessWidget{
   @override
@@ -45,6 +44,9 @@ class SignUpBody extends StatefulWidget{
 class SignUpBodyState extends State<SignUpBody>{
   AccType? _type = AccType.individual;
   String btnText = "Create New Account";
+
+  String email = '', password = '';
+
   @override
   Widget build(BuildContext context) {
     double sw = MediaQuery.of(context).size.width;
@@ -72,6 +74,7 @@ class SignUpBodyState extends State<SignUpBody>{
           SizedBox(height: 10),
           TextField(
             // style: TextStyle(color: Colors.white),
+            onChanged: (val){email = val;},
             decoration: InputDecoration(
             labelText: "Email",
             hintText: "johndoe@example.com"
@@ -88,6 +91,7 @@ class SignUpBodyState extends State<SignUpBody>{
           TextField(
             // style: TextStyle(color: Colors.white),
             obscureText: true,
+            onChanged: (val){password = val;},
             decoration: InputDecoration(
               labelText: "Password",
               hintText: "Create a strong password",
@@ -114,7 +118,12 @@ class SignUpBodyState extends State<SignUpBody>{
             Text("Individual")
           ], mainAxisAlignment: MainAxisAlignment.center),
           SizedBox(height: 20),
-          ElevatedButton(onPressed: (){}, child: Text(btnText)),
+          ElevatedButton(onPressed: () async {
+            dynamic user = await auth.register(email, password);
+            print(user);
+            final bar = SnackBar(content: Text(user.user!.uid));
+            ScaffoldMessenger.of(context).showSnackBar(bar);
+          }, child: Text(btnText)),
         ],
       )
       ))
