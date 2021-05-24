@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:cotrack_app/signup_old.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 var colPrim = Color(0xffff5757);
@@ -25,6 +22,8 @@ class SignUp extends StatelessWidget{
         textTheme: TextTheme(bodyText2: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
         // accentColor: colAcc,
         // hintColor: colHint,
+        unselectedWidgetColor: colAcc,
+        // radioTheme: RadioThemeData(fillColor: MaterialStateColor.resolveWith((states) => colAcc)),
         elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(minimumSize: Size(double.infinity,50))),
         inputDecorationTheme: InputDecorationTheme(
           // labelStyle: TextStyle(color: Color(0xffffffff)),
@@ -45,19 +44,16 @@ class SignUpBody extends StatefulWidget{
 
 class SignUpBodyState extends State<SignUpBody>{
   AccType? _type = AccType.individual;
+  String btnText = "Create New Account";
   @override
   Widget build(BuildContext context) {
     double sw = MediaQuery.of(context).size.width;
-    double sh = MediaQuery.of(context).size.height;
-    double logosize = 512;
-    if(sh*0.5 < 512){
-      logosize = sh*0.5;
-    }
     return Scaffold(
       // backgroundColor: Colors.redAccent,
       appBar: AppBar(
+        toolbarHeight: 100,
         title: Row(children:[
-          Image.asset('images/icon.png', width: 55)
+          Image.asset('images/icon.png', width: 80)
         ], mainAxisAlignment: MainAxisAlignment.center,)
       ),
       body: Center(child: Padding(padding: EdgeInsets.symmetric(horizontal: 0.05*sw),
@@ -97,18 +93,28 @@ class SignUpBodyState extends State<SignUpBody>{
               hintText: "Create a strong password",
           )),
           SizedBox(height: 10),
-          Divider(color: colAcc, thickness: 1, endIndent: 20, indent: 20),
+          // Divider(color: colAcc, thickness: 1, endIndent: 20, indent: 20),
           SizedBox(height: 10),
-          Text("Choose Account Type:"),
+          Center(child: Text("Choose Account Type")),
           Row(children: [
-            Radio(value: AccType.merchant, groupValue: _type, onChanged: (AccType? val){setState(){_type=val;}}),
+            Radio(value: AccType.merchant, groupValue: _type, onChanged: (AccType? val){
+              setState(() {
+                _type = val;
+                btnText = "Continue ▶";
+              });
+            }),
             Text("Merchant"),
             SizedBox(width: 20),
-            Radio(value: AccType.individual, groupValue: _type, onChanged: (AccType? val){setState(){_type=val;}}),
+            Radio(value: AccType.individual, groupValue: _type, onChanged: (AccType? val){
+              setState(() {
+                _type = val;
+                btnText = "Create New Account";
+              });
+            }),
             Text("Individual")
-          ]),
+          ], mainAxisAlignment: MainAxisAlignment.center),
           SizedBox(height: 20),
-          ElevatedButton(onPressed: (){}, child: Text("Create New Account")),
+          ElevatedButton(onPressed: (){}, child: Text(btnText)),
         ],
       )
       ))

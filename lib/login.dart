@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'signup.dart';
 var colPrim = Color(0xffff5757);
 var colAcc = Color(0xffffbd59);
 var colHint = Color(0xaaffffff);
@@ -68,7 +69,9 @@ class LoginController extends StatelessWidget{
           Divider(color: colAcc, thickness: 1, endIndent: 20, indent: 20),
           Row(children: [
             Text("Don't have an account?"),
-            TextButton(onPressed: (){}, child: Text("Sign Up"))
+            TextButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
+            }, child: Text("Sign Up"))
           ], mainAxisAlignment: MainAxisAlignment.center,)
         ],
       )
