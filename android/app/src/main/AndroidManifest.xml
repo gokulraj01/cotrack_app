@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.cotrack_app">
+    package="com.gad.cotrack_app">
    <application
         android:label="CoTrack"
         android:icon="@mipmap/cotrack_icon">
