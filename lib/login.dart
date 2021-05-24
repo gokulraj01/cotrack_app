@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'signup.dart';
 var colPrim = Color(0xffff5757);
 var colAcc = Color(0xffffbd59);
 var colHint = Color(0xaaffffff);
@@ -21,7 +22,7 @@ class Login extends StatelessWidget{
         elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(minimumSize: Size(double.infinity,50))),
         inputDecorationTheme: InputDecorationTheme(
           labelStyle: TextStyle(color: Color(0xffffffff), fontSize: 16),
-          focusedBorder: OutlineInputBorder(),
+          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 2.0)),
           border: OutlineInputBorder(),
           filled: true,
           fillColor: Color(0x22ffbd59)
@@ -49,14 +50,12 @@ class LoginController extends StatelessWidget{
           Center(child:Text("Login to your CoTrack Account")),
           SizedBox(height: 20),
           TextField(
-            style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
             labelText: "Username",
             hintText: "Enter your username"
           )),
           SizedBox(height: 10),
           TextField(
-            style: TextStyle(color: Colors.white),
             obscureText: true,
             decoration: InputDecoration(
               labelText: "Password",
@@ -68,7 +67,9 @@ class LoginController extends StatelessWidget{
           Divider(color: colAcc, thickness: 1, endIndent: 20, indent: 20),
           Row(children: [
             Text("Don't have an account?"),
-            TextButton(onPressed: (){}, child: Text("Sign Up"))
+            TextButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
+            }, child: Text("Sign Up"))
           ], mainAxisAlignment: MainAxisAlignment.center,)
         ],
       )
