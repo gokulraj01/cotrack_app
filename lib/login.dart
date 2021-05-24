@@ -1,11 +1,12 @@
+import 'package:cotrack_app/firebase/authenticate.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'signup.dart';
 var colPrim = Color(0xffff5757);
 var colAcc = Color(0xffffbd59);
 var colHint = Color(0xaaffffff);
-void main(){
-  runApp(Login());
-}
+
+FireAuth auth = FireAuth();
 
 class Login extends StatelessWidget{
   @override
@@ -62,7 +63,9 @@ class LoginController extends StatelessWidget{
               hintText: "Enter your password",
           )),
           SizedBox(height: 10),
-          ElevatedButton(onPressed: (){}, child: Text("Sign-In")),
+          ElevatedButton(onPressed: (){
+             print(auth.signInAnon(context));
+          }, child: Text("Sign-In")),
           SizedBox(height: 10),
           Divider(color: colAcc, thickness: 1, endIndent: 20, indent: 20),
           Row(children: [

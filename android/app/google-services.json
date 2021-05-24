@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "419567258315",
+    "project_id": "cotrack-app-d6c3a",
+    "storage_bucket": "cotrack-app-d6c3a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:419567258315:android:2472c9ebf3d070b1a1a94e",
+        "android_client_info": {
+          "package_name": "com.gad.cotrack_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "419567258315-cq4g8m8t1nmktpnsnrv894cd74pbu99k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnoimhjxQn2hdtKap1qRp-w-eDzvYM3K4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "419567258315-cq4g8m8t1nmktpnsnrv894cd74pbu99k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
