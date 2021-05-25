@@ -21,43 +21,45 @@ class _ScanPageState extends State<ScanPage> {
   bool backCamera = true;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: colPrim,
-          title: Row(
-            children: [
-              Image.asset('images/icon.png', width: 80),
-              Text("Scan using:" + (backCamera ? "Front Cam" : "Back Cam"))
-            ],
-          ),
-          actions: <Widget>[
-            IconButton(
-              icon: backCamera
-                  ? Icon(Ionicons.aperture_outline)
-                  : Icon(Icons.camera),
-              onPressed: () {
-                setState(() {
-                  backCamera = !backCamera;
-                  camera = backCamera ? 1 : -1;
-                });
-              },
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+            appBar: AppBar(
+              backgroundColor: colPrim,
+              title: Row(
+                children: [
+                  Image.asset('images/icon.png', width: 80),
+                  Text("Scan using:" + (backCamera ? "Front Cam" : "Back Cam"))
+                ],
+              ),
+              actions: <Widget>[
+                IconButton(
+                  icon: backCamera
+                      ? Icon(Ionicons.aperture_outline)
+                      : Icon(Icons.camera),
+                  onPressed: () {
+                    setState(() {
+                      backCamera = !backCamera;
+                      camera = backCamera ? 1 : -1;
+                    });
+                  },
+                ),
+                IconButton(
+                  icon: Icon(MaterialCommunityIcons.qrcode_scan),
+                  onPressed: () {
+                    _scan();
+                  },
+                )
+              ],
             ),
-            IconButton(
-              icon: Icon(MaterialCommunityIcons.qrcode_scan),
-              onPressed: () {
-                _scan();
-              },
-            )
-          ],
-        ),
-        body: Center(
-          child: Text(
-            (qrCodeResult == null) || (qrCodeResult == "")
-                ? "Please Scan to show some result"
-                : "Result:" + qrCodeResult,
-            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w900),
-          ),
-        ));
+            body: Center(
+              child: Text(
+                (qrCodeResult == null) || (qrCodeResult == "")
+                    ? "Please Scan to show some result"
+                    : "Result:" + qrCodeResult,
+                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w900),
+              ),
+            )));
   }
 
   Future<void> _scan() async {
