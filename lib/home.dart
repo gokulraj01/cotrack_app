@@ -2,7 +2,9 @@ import 'package:cotrack_app/firebase/authenticate.dart';
 import 'package:cotrack_app/firebase/database.dart';
 import 'package:cotrack_app/login.dart';
 import 'package:cotrack_app/profile.dart';
+import 'package:cotrack_app/scanner.dart';
 import 'package:flutter/material.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 var colPrim = Color(0xffff5757);
 var colAcc = Color(0xffffbd59);
@@ -45,14 +47,20 @@ class HomePageState extends StatefulWidget {
 }
 
 class _HomePageStateState extends State<HomePageState> {
+  Barcode? result;
+  String toview = "Scan a Code";
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
+        body: Center(child: Text(toview)),
         floatingActionButton: Row(children: [
           Text("Scan a code "),
           Icon(Icons.double_arrow_rounded),
-          FloatingActionButton(onPressed: (){}, backgroundColor: colPrim, child: Icon(Icons.qr_code_scanner)),
+          FloatingActionButton(onPressed: () async {
+            result = await Navigator.push(context, MaterialPageRoute(builder: (context) => QRScan()));
+            setState(() {});
+          }, backgroundColor: colPrim, child: Icon(Icons.qr_code_scanner)),
         ], mainAxisAlignment: MainAxisAlignment.end),
         drawer: Drawer(
           child: ListView(padding: EdgeInsets.zero, children: [
