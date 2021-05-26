@@ -17,10 +17,8 @@ class Appmain extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
             backgroundColor: colPrim,
-            title: Row(
-              children: [Image.asset('images/icon.png', width: 80)],
-              mainAxisAlignment: MainAxisAlignment.center,
-            )),
+            title: Image.asset('images/icon.png', width: 50)
+            ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
           focusColor: colPrim,

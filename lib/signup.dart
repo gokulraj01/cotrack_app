@@ -1,4 +1,5 @@
 import 'package:cotrack_app/firebase/authenticate.dart';
+import 'package:cotrack_app/landing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 var colPrim = Color(0xffff5757);
@@ -45,7 +46,7 @@ class SignUpBodyState extends State<SignUpBody>{
   AccType? _type = AccType.individual;
   String btnText = "Create New Account";
 
-  String email = '', password = '';
+  String name = '', email = '', password = '', phone = '', uType = '';
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +68,7 @@ class SignUpBodyState extends State<SignUpBody>{
           SizedBox(height: 20),
           TextField(
             // style: TextStyle(color: Colors.white),
+            onChanged: (val){name = val;},
             decoration: InputDecoration(
             labelText: "Full Name",
             hintText: "John Doe"
@@ -82,6 +84,7 @@ class SignUpBodyState extends State<SignUpBody>{
           SizedBox(height: 10),
           TextField(
             // style: TextStyle(color: Colors.white),
+            onChanged: (val){phone = val;},
             decoration: InputDecoration(
             labelText: "Phone",
             hintText: "1234567890",
@@ -104,7 +107,7 @@ class SignUpBodyState extends State<SignUpBody>{
             Radio(value: AccType.merchant, groupValue: _type, onChanged: (AccType? val){
               setState(() {
                 _type = val;
-                btnText = "Continue ▶";
+                uType = "M";
               });
             }),
             Text("Merchant"),
@@ -112,17 +115,25 @@ class SignUpBodyState extends State<SignUpBody>{
             Radio(value: AccType.individual, groupValue: _type, onChanged: (AccType? val){
               setState(() {
                 _type = val;
-                btnText = "Create New Account";
+                uType = "I";
               });
             }),
             Text("Individual")
           ], mainAxisAlignment: MainAxisAlignment.center),
           SizedBox(height: 20),
           ElevatedButton(onPressed: () async {
-            dynamic user = await auth.register(email, password);
-            print(user);
-            final bar = SnackBar(content: Text(user.user!.uid));
-            ScaffoldMessenger.of(context).showSnackBar(bar);
+            String status = "Please wait while we generate your account";
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(status)));
+            dynamic user = await auth.register(name, email, password, phone, uType);
+            if(user.runtimeType.toString() != "User"){
+              status = user.toString();
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(status)));
+            }
+            else{
+              status = "User Registration Successful. Login to Continue.";
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(status)));
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Landing()));
+            }
           }, child: Text(btnText)),
         ],
       )
