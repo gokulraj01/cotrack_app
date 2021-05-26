@@ -1,4 +1,5 @@
 import 'package:cotrack_app/firebase/authenticate.dart';
+import 'package:cotrack_app/home.dart';
 import 'package:cotrack_app/login.dart';
 import 'package:flutter/material.dart';
 var colPrim = Color(0xffff5757);
@@ -29,7 +30,10 @@ class _LandingHomeState extends State<LandingHome> {
   Widget build(BuildContext context) {
     Future fireInit = auth.init();
     fireInit.then((v) async{
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()));
+      if(auth.signedIn())
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
+      else
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()));
     });
     return Scaffold(
       backgroundColor: colPrim,
