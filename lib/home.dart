@@ -1,5 +1,6 @@
 import 'package:cotrack_app/firebase/authenticate.dart';
 import 'package:cotrack_app/firebase/database.dart';
+import 'package:cotrack_app/login.dart';
 import 'package:cotrack_app/profile.dart';
 import 'package:flutter/material.dart';
 
@@ -62,10 +63,15 @@ class _HomePageStateState extends State<HomePageState> {
               Navigator.pop(context);
               Navigator.push(context, MaterialPageRoute(builder: (context) => Profile()));
             },),
-            ListTile(leading: Icon(Icons.track_changes), title: Text("Visiting Log")),
+            ListTile(leading: Icon(Icons.receipt_long_rounded), title: Text("Visiting Log")),
             Divider(color: Colors.black, endIndent: 20, indent: 20),
             ListTile(leading: Icon(Icons.settings), title: Text("Settings")),
             ListTile(leading: Icon(Icons.feedback_outlined), title: Text("Feedback")),
+            Divider(color: Colors.black, endIndent: 20, indent: 20),
+            ListTile(leading: Icon(Icons.logout), title: Text("Sign Out"), onTap: (){
+              auth.signOut();
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()));
+            },),
           ],),
         ),
         appBar: AppBar(
@@ -73,7 +79,8 @@ class _HomePageStateState extends State<HomePageState> {
           centerTitle: true,
           actions: [
             IconButton(onPressed: (){
-              //logout
+              auth.signOut();
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()));
             }, icon: Tooltip(message: "Logout", child: Icon(Icons.logout))),
             IconButton(onPressed: (){
                Navigator.push(context, MaterialPageRoute(builder: (context) => Profile()));

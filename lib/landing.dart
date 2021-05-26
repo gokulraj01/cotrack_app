@@ -14,6 +14,7 @@ class Landing extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "CoTrack",
       theme: ThemeData(primarySwatch: Colors.indigo),
       home: LandingHome()
