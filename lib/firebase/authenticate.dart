@@ -57,6 +57,15 @@ class FireAuth{
     return auth.currentUser!.uid;
   }
 
+  Future? signOut(){
+    try{
+      FirebaseAuth auth = FirebaseAuth.instance;
+      auth.signOut();
+    }catch(e){
+      print(e);
+    }
+  }
+
   Future? signIn(String email, String pass) async {
     try {
       FirebaseAuth auth = FirebaseAuth.instance;
