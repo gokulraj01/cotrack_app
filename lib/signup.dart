@@ -1,5 +1,5 @@
 import 'package:cotrack_app/firebase/authenticate.dart';
-import 'package:cotrack_app/landing.dart';
+import 'package:cotrack_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 var colPrim = Color(0xffff5757);
